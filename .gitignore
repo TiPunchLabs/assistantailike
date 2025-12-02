@@ -32,3 +32,9 @@ Thumbs.db
 # Examples dependencies
 examples/react/node_modules/
 examples/react/dist/
+
+# Claude Code
+.claude/
+
+# Spec Kit
+.specify/

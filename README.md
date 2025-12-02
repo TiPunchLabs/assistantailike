@@ -355,6 +355,16 @@ terraform plan
 terraform apply
 ```
 
+## Project Principles
+
+This project follows a strict set of principles:
+
+- **Zero Dependencies** - Pure vanilla JavaScript, no external libraries
+- **Accessibility First** - ARIA labels, keyboard navigation, screen reader support
+- **CSS Variables Theming** - All styling via customizable CSS variables
+- **API-Ready** - Works standalone or connected to any AI API
+- **Progressive Enhancement** - Graceful degradation and responsive design
+
 ## License
 
 MIT
