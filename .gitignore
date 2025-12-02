@@ -7,3 +7,28 @@
 
 # Direnv
 .direnv/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build
+.cache/
+.parcel-cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Examples dependencies
+examples/react/node_modules/
+examples/react/dist/

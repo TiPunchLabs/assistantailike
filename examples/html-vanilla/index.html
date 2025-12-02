@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AssistantAILike - HTML Vanilla Example</title>
+
+    <!-- AssistantAILike CSS -->
+    <link rel="stylesheet" href="../../dist/assistant.min.css">
+
+    <!-- Demo page styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .demo-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .demo-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .demo-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .demo-card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .demo-card p {
+            margin-bottom: 15px;
+        }
+
+        .demo-card ul {
+            padding-left: 20px;
+        }
+
+        .demo-card li {
+            margin-bottom: 8px;
+        }
+
+        .demo-card code {
+            background: #f4f4f4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        [data-theme="dark"] .demo-card {
+            background: #2a2a3e;
+            color: #e0e0e0;
+        }
+
+        [data-theme="dark"] .demo-card h2 {
+            color: #42a5f5;
+        }
+
+        [data-theme="dark"] .demo-card code {
+            background: #1a1a2e;
+            color: #42a5f5;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+    <div class="demo-container">
+        <header class="demo-header">
+            <h1>AssistantAILike</h1>
+            <p>A lightweight, customizable AI-like chat assistant widget</p>
+        </header>
+
+        <div class="demo-card">
+            <h2>Demo</h2>
+            <p>Click the chat button in the bottom right corner to try the assistant!</p>
+            <p>This example demonstrates:</p>
+            <ul>
+                <li>Custom knowledge base with multiple topics</li>
+                <li>Keyword mapping for fuzzy matching</li>
+                <li>Light/Dark theme support</li>
+                <li>Quick reply buttons</li>
+                <li>Typing indicator animation</li>
+            </ul>
+        </div>
+
+        <div class="demo-card">
+            <h2>Quick Start</h2>
+            <p>Include the CSS and JS files in your HTML:</p>
+            <pre><code>&lt;link rel="stylesheet" href="assistant.min.css"&gt;
+&lt;script src="assistant.min.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+
+        <div class="demo-card">
+            <h2>Try These Topics</h2>
+            <ul>
+                <li><strong>About</strong> - Learn about the company</li>
+                <li><strong>Services</strong> - Discover available services</li>
+                <li><strong>Pricing</strong> - View pricing information</li>
+                <li><strong>Contact</strong> - Get contact details</li>
+                <li><strong>Support</strong> - Get help and support</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- AssistantAILike HTML -->
+    <button class="assistant-button" id="assistantButton" aria-label="Open chat assistant">
+        <svg class="assistant-icon-chat" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+        </svg>
+        <svg class="assistant-icon-close" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+    </button>
+
+    <div class="assistant-container" id="assistantContainer" role="dialog" aria-labelledby="assistantTitle">
+        <header class="assistant-header">
+            <div class="assistant-header-info">
+                <h3 id="assistantTitle">Virtual Assistant</h3>
+                <p>How can I help you?</p>
+            </div>
+            <button class="assistant-close-btn" id="assistantCloseBtn" aria-label="Close chat">&times;</button>
+        </header>
+
+        <main class="assistant-messages" id="assistantMessages" aria-live="polite">
+            <div class="assistant-message bot">
+                <div class="assistant-message-content">
+                    Hello! I'm your virtual assistant. Ask me about our services, pricing, or anything else!
+                </div>
+            </div>
+        </main>
+
+        <nav class="assistant-quick-replies" aria-label="Quick reply options">
+            <button class="assistant-quick-reply-btn" data-question="About">About</button>
+            <button class="assistant-quick-reply-btn" data-question="Services">Services</button>
+            <button class="assistant-quick-reply-btn" data-question="Pricing">Pricing</button>
+            <button class="assistant-quick-reply-btn" data-question="Contact">Contact</button>
+        </nav>
+
+        <footer class="assistant-input-area">
+            <input type="text" class="assistant-input" id="assistantInput" placeholder="Type your question...">
+            <button class="assistant-send-btn" id="assistantSendBtn" aria-label="Send message">
+                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+        </footer>
+    </div>
+
+    <!-- AssistantAILike JS -->
+    <script src="../../dist/assistant.min.js"></script>
+    <script>
+        // Theme toggle function
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        // Initialize AssistantAILike with custom configuration
+        const assistant = new AssistantAILike({
+            // Knowledge base
+            knowledge: {
+                'about': {
+                    title: 'About Us',
+                    content: 'We are a technology company focused on creating innovative solutions. Founded in 2020, we help businesses transform their digital presence.'
+                },
+                'services': {
+                    title: 'Our Services',
+                    content: 'We offer: <br>• Web Development<br>• Mobile Apps<br>• Cloud Solutions<br>• AI Integration<br><br><a href="#services">View all services</a>'
+                },
+                'pricing': {
+                    title: 'Pricing',
+                    content: 'Our pricing is flexible and based on project requirements:<br>• Starter: $999/month<br>• Professional: $2,499/month<br>• Enterprise: Custom pricing<br><br><a href="#pricing">See detailed pricing</a>'
+                },
+                'contact': {
+                    title: 'Contact Us',
+                    content: 'Get in touch with us:<br>• Email: hello@example.com<br>• Phone: +1 (555) 123-4567<br>• Address: 123 Tech Street, San Francisco<br><br><a href="#contact">Contact form</a>'
+                },
+                'support': {
+                    title: 'Support',
+                    content: 'Need help? We\'re here for you!<br>• Documentation: <a href="#docs">docs.example.com</a><br>• Live Chat: Available 24/7<br>• Email: support@example.com'
+                },
+                'help': {
+                    title: 'How Can I Help?',
+                    content: 'I can answer questions about:<br>• Our company and team<br>• Services we offer<br>• Pricing and plans<br>• Contact information<br>• Technical support<br><br>Just type your question!'
+                }
+            },
+
+            // Keyword mappings for better matching
+            keywords: {
+                'who': 'about',
+                'company': 'about',
+                'team': 'about',
+                'what do you do': 'services',
+                'offer': 'services',
+                'solutions': 'services',
+                'cost': 'pricing',
+                'price': 'pricing',
+                'how much': 'pricing',
+                'plans': 'pricing',
+                'email': 'contact',
+                'phone': 'contact',
+                'address': 'contact',
+                'reach': 'contact',
+                'help': 'support',
+                'issue': 'support',
+                'problem': 'support',
+                'documentation': 'support'
+            },
+
+            // Customization
+            typingDelay: 600,
+            notFoundMessage: 'I\'m not sure about that. Try asking about: <strong>About</strong>, <strong>Services</strong>, <strong>Pricing</strong>, <strong>Contact</strong>, or <strong>Support</strong>.',
+
+            // Callbacks
+            onOpen: function() {
+                console.log('Assistant opened');
+            },
+            onClose: function() {
+                console.log('Assistant closed');
+            },
+            onMessageSent: function(message) {
+                console.log('User sent:', message);
+            },
+            onMessageReceived: function(answer) {
+                console.log('Bot replied with answer');
+            },
+            onNotFound: function(question) {
+                console.log('No answer found for:', question);
+            }
+        });
+    </script>
+</body>
+</html>

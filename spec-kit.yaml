@@ -1,0 +1,124 @@
+# spec-kit.yaml
+# Configuration for AssistantAILike project
+# https://github.com/xgueret/assistantailike
+
+name: assistantailike
+version: 1.0.0
+description: A lightweight, customizable AI-like chat assistant widget
+
+# Project metadata
+metadata:
+  author: Xavier GUERET
+  license: MIT
+  repository: https://github.com/xgueret/assistantailike
+  homepage: https://github.com/xgueret/assistantailike
+  keywords:
+    - chatbot
+    - assistant
+    - widget
+    - javascript
+    - react
+    - chat
+    - ai-like
+
+# Source files
+sources:
+  css:
+    - src/css/assistant.css
+  js:
+    - src/js/assistant.js
+  html:
+    - src/html/assistant.html
+
+# Distribution files
+dist:
+  css:
+    - dist/assistant.css
+    - dist/assistant.min.css
+  js:
+    - dist/assistant.js
+    - dist/assistant.min.js
+
+# Examples
+examples:
+  html-vanilla:
+    path: examples/html-vanilla
+    description: Basic HTML/CSS/JS integration example
+    files:
+      - index.html
+      - knowledge-example.js
+  react:
+    path: examples/react
+    description: React component integration example
+    files:
+      - package.json
+      - vite.config.js
+      - index.html
+      - src/main.jsx
+      - src/App.jsx
+      - src/index.css
+      - src/components/Assistant.jsx
+      - src/components/Assistant.css
+
+# Build configuration
+build:
+  minify: true
+  sourcemaps: false
+  output: dist
+
+# Features
+features:
+  - name: knowledge-base
+    description: Local knowledge base with keyword matching
+  - name: theme-support
+    description: Light/dark mode support with CSS variables
+  - name: quick-replies
+    description: Configurable quick reply buttons
+  - name: typing-indicator
+    description: Animated typing indicator
+  - name: responsive
+    description: Mobile-friendly responsive design
+  - name: accessibility
+    description: ARIA labels and keyboard navigation
+  - name: callbacks
+    description: Event callbacks for analytics integration
+  - name: api-ready
+    description: Custom answer function for API integration
+
+# Browser support
+browsers:
+  - chrome: ">= 80"
+  - firefox: ">= 75"
+  - safari: ">= 13"
+  - edge: ">= 80"
+
+# Dependencies
+dependencies:
+  production: []
+  development:
+    - terser  # For JS minification
+    - cssnano  # For CSS minification
+
+# Scripts
+scripts:
+  build: |
+    # Minify CSS
+    npx cssnano src/css/assistant.css dist/assistant.min.css
+    # Minify JS
+    npx terser src/js/assistant.js -o dist/assistant.min.js -c -m
+    # Copy non-minified versions
+    cp src/css/assistant.css dist/assistant.css
+    cp src/js/assistant.js dist/assistant.js
+  dev: |
+    # Start local development server
+    npx serve examples/html-vanilla -p 3000
+  lint: |
+    npx eslint src/js/
+    npx stylelint src/css/
+
+# Documentation
+docs:
+  readme: README.md
+  examples:
+    - examples/html-vanilla/index.html
+    - examples/react/src/App.jsx

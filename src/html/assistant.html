@@ -1,0 +1,65 @@
+<!--
+  AssistantAILike - HTML Template
+  A lightweight, customizable AI-like chat assistant widget
+  https://github.com/xgueret/assistantailike
+
+  Usage: Include this template in your page and customize as needed
+-->
+
+<!-- Floating Button -->
+<button class="assistant-button" id="assistantButton" aria-label="Open chat assistant">
+    <!-- Chat Icon -->
+    <svg class="assistant-icon-chat" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+    </svg>
+    <!-- Close Icon -->
+    <svg class="assistant-icon-close" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+    </svg>
+</button>
+
+<!-- Chat Container -->
+<div class="assistant-container" id="assistantContainer" role="dialog" aria-labelledby="assistantTitle" aria-modal="true">
+    <!-- Header -->
+    <header class="assistant-header">
+        <div class="assistant-header-info">
+            <h3 id="assistantTitle">Virtual Assistant</h3>
+            <p>Ask me anything</p>
+        </div>
+        <button class="assistant-close-btn" id="assistantCloseBtn" aria-label="Close chat">&times;</button>
+    </header>
+
+    <!-- Messages Area -->
+    <main class="assistant-messages" id="assistantMessages" aria-live="polite">
+        <!-- Welcome message (optional) -->
+        <div class="assistant-message bot">
+            <div class="assistant-message-content">
+                Hello! I'm here to help you. Ask me a question or click on a topic below.
+            </div>
+        </div>
+    </main>
+
+    <!-- Quick Replies -->
+    <nav class="assistant-quick-replies" id="assistantQuickReplies" aria-label="Quick reply options">
+        <button class="assistant-quick-reply-btn" data-question="About">About</button>
+        <button class="assistant-quick-reply-btn" data-question="Services">Services</button>
+        <button class="assistant-quick-reply-btn" data-question="Contact">Contact</button>
+        <button class="assistant-quick-reply-btn" data-question="Help">Help</button>
+    </nav>
+
+    <!-- Input Area -->
+    <footer class="assistant-input-area">
+        <input
+            type="text"
+            class="assistant-input"
+            id="assistantInput"
+            placeholder="Type your question..."
+            aria-label="Type your message"
+        >
+        <button class="assistant-send-btn" id="assistantSendBtn" aria-label="Send message">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+        </button>
+    </footer>
+</div>

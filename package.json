@@ -1,0 +1,42 @@
+{
+  "name": "assistantailike",
+  "version": "1.0.0",
+  "description": "A lightweight, customizable AI-like chat assistant widget",
+  "main": "dist/assistant.min.js",
+  "module": "src/js/assistant.js",
+  "style": "dist/assistant.min.css",
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "cp src/css/assistant.css dist/assistant.css",
+    "build:js": "cp src/js/assistant.js dist/assistant.js",
+    "dev": "npx serve examples/html-vanilla -p 3000",
+    "dev:react": "cd examples/react && npm install && npm run dev"
+  },
+  "keywords": [
+    "chatbot",
+    "assistant",
+    "widget",
+    "chat",
+    "ai-like",
+    "vanilla-js",
+    "react"
+  ],
+  "author": "Xavier GUERET",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xgueret/assistantailike.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xgueret/assistantailike/issues"
+  },
+  "homepage": "https://github.com/xgueret/assistantailike#readme",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
